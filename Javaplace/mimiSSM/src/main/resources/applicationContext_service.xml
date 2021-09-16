@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    <import resource="classpath:applicationContext_dao.xml"></import>
+        为避免重复导入其他文件的bean ,因此不支持使用这种方式导入
+-->
+<!--    设置业务逻辑层的包扫描器,目的是在指定路径下,使用@Servie注解的类,Spring负责创建对象,并且添加依赖.-->
+    <context:component-scan base-package="com.nguyenxb.service"></context:component-scan>
+
+<!--    事务管理器.-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+<!--    添加事务的切面-->
+    <tx:advice id="myadvice" transaction-manager="transactionManager">
+        <tx:attributes>
+<!--            所有包含 select 的方法 都是只读-->
+            <tx:method name="*select*" read-only="true"/>
+            <!--            所有包含 select 的方法 都是只读-->
+            <tx:method name="*find*" read-only="true"/>
+            <!--            所有包含 select 的方法 都是只读-->
+            <tx:method name="*get*" read-only="true"/>
+            <!--            所有包含 select 的方法 都是只读-->
+            <tx:method name="*search*" read-only="true"/>
+
+<!--            增删改都支持事务 -->
+<!--            增-->
+            <tx:method name="*insert*" propagation="REQUIRED"/>
+            <tx:method name="*save*" propagation="REQUIRED"/>
+            <tx:method name="*add*" propagation="REQUIRED"/>
+<!--            删-->
+            <tx:method name="*delete*" propagation="REQUIRED"/>
+            <tx:method name="*remove*" propagation="REQUIRED"/>
+            <tx:method name="*clear*" propagation="REQUIRED"/>
+<!--            改-->
+            <tx:method name="*update*" propagation="REQUIRED"/>
+            <tx:method name="*modify*" propagation="REQUIRED"/>
+            <tx:method name="*change*" propagation="REQUIRED"/>
+            <tx:method name="*set*" propagation="REQUIRED"/>
+
+<!--            其他的方法支持事务-->
+            <tx:method name="*" propagation="SUPPORTS"/>
+
+        </tx:attributes>
+    </tx:advice>
+
+<!--    完成切面和切入点的切入-->
+    <aop:config>
+<!--        指定切入点为：定义在 service 包或者子包里的任意类的任意方法。“..”出现在类名中时，后面必须跟“*”，表示包、子包下的所有类。-->
+        <aop:pointcut id="mypointcut" expression="execution(* com.nguyenxb.service..*(..))"/>
+        <aop:advisor advice-ref="myadvice" pointcut-ref="mypointcut"></aop:advisor>
+
+    </aop:config>
+</beans>

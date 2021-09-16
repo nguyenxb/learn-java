@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nguyen.dao.StudentDao">
+    <!--Enter your sql statement with (select | insert | update |delete) tag
+        The id of the tag is suggested to use the name of the method that called it-->
+    <insert id="insertStudent">
+        insert into student2 (name,age) values (#{name},#{age})
+    </insert>
+    <select id="selectStudents" resultType="com.nguyen.domain.Student">
+        select id,name,age from student2 order by id desc
+    </select>
+</mapper>

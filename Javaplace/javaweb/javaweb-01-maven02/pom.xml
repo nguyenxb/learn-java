@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ruasib</groupId>
+    <artifactId>javaweb-01-maven02</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <!--      具体依赖的jar包配置文件-->
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+<!--        maven 的高级指出在于，他会帮你导入这个jar包所依赖的去哦他jar包-->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.1.9.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+<!--    在build中配置resources,来放置我们资源导出失败的问题-->
+    <build>
+        <resources>
+            <resource>
+                <!--  在src/main/resources 目录下可以包含properties、xml文件-->
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.properties</exclude>
+                    <exclude>**/*.xml</exclude>
+                </excludes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+<!--                在src/main/java 目录下可以包含properties、xml文件-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+<!--                关闭自动过滤-->
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

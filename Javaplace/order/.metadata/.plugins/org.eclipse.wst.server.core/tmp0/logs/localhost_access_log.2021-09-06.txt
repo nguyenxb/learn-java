@@ -1,0 +1,7 @@
+0:0:0:0:0:0:0:1 - - [06/Sep/2021:09:42:28 +0800] "GET / HTTP/1.1" 404 735
+0:0:0:0:0:0:0:1 - - [06/Sep/2021:09:42:29 +0800] "GET /favicon.ico HTTP/1.1" 404 746
+0:0:0:0:0:0:0:1 - - [06/Sep/2021:09:42:37 +0800] "GET /jspweb/ HTTP/1.1" 200 954
+0:0:0:0:0:0:0:1 - - [06/Sep/2021:09:42:43 +0800] "GET /jspweb/register.jsp HTTP/1.1" 200 3013
+0:0:0:0:0:0:0:1 - - [06/Sep/2021:09:42:43 +0800] "GET /jspweb/js/jquery-3.3.1.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [06/Sep/2021:09:42:47 +0800] "GET /jspweb/showInfo.jsp?username=hqq&gender=%E7%94%B7&nation=%E6%B1%89%E6%97%8F&job=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF&inters=%E7%94%B5%E5%BD%B1 HTTP/1.1" 200 283
+0:0:0:0:0:0:0:1 - - [06/Sep/2021:09:56:27 +0800] "GET /jspweb/showInfo.jsp?username=dasda&gender=%E7%94%B7&nation=%E6%B1%89%E6%97%8F&job=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF&inters=%E7%94%B5%E5%BD%B1 HTTP/1.1" 500 2392

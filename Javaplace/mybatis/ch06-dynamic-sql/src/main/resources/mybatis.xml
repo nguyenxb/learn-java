@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 1.约束文件: 可以打开看的
+    http://mybatis.org/dtd/mybatis-3-config.dtd
+    约束文件的作用:定义和限制当前文件中可以使用的标签和属性,以及标签出现的顺序-->
+<configuration>
+<!--    使用外部属性配置文件
+        resource: 指定类路径下的某个属性的文件
+-->
+    <properties resource="jdbc.properties"/>
+
+    <settings>
+        <!--配置日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+<!--        第一种语法格式
+            type : java类型的全限定名称 (自定义类型)
+            alias:自定义别名
+
+            优点: 别名可以自定义
+            缺点:每个类型必须单独定义
+-->
+<!--        <typeAlias type="com.nguyenxb.entity.Student" alias="stu" />-->
+<!--        <typeAlias type="com.nguyenxb.pojo.QueryParam" alias="qp"></typeAlias>-->
+
+<!--        第二种方法
+            name : 包名 ,mybatis会把这个包中所有类名作为别名(不用区分大小写)
+            优点:使用方便,一次给多个类定义别名
+            缺点: 别名不能自定义,必须是类名
+-->
+        <package name="com.nguyenxb.entity"/>
+
+    </typeAliases>
+<!--    声明插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <!--配置数据源: 创建Connection对象-->
+            <dataSource type="POOLED">
+                <!--driver:驱动的内容-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <!--连接数据库的url: 不能直接使用 & 符号,要将其转换为 html 实体即 &amp; 代表的就是 & 符号 -->
+                <property name="url" value="${jdbc.url}"/>
+                <!--用户名-->
+                <property name="username" value="${jdbc.username}"/>
+                <!--用户密码-->
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--指定其他mapper文件的位置:
+            目的: 使用这里的连接数据库信息来执行其他文件的sql语句-->
+    <!--Enter the path to your mapper file -->
+    <mappers>
+<!--        第一种方式, resource="mapper文件的路径
+            优点:文件清晰.加载的文件是明确的.文件的位置比较灵活.
+            缺点:文件笔记多,代码量会比较大,管理难度大.
+
+"-->
+<!--        <mapper resource="com\nguyenxb\dao\StudentDao.xml"/>-->
+<!--        第二种方式, 使用<package>
+                name : 包名, mapper文件所在的包名.
+                特点:把这个包中的所有mapper文件,一次加载.
+
+                使用要求:
+                1.mapper文件和dao接口在同一个目录
+                2.mapper文件和dao接口名称完全一样
+-->
+        <package name="com.nguyenxb.dao"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table align="center" >
+		<form>
+			<thead align="center">
+				<tr>
+					<td>用户登录</td>
+				</tr>
+			</thead>
+			<tbody>
+				<form>
+					<tr>
+						<td>用户名:</td>
+						<td><input type="text" name="username"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>密码:</td>
+						<td><input type="password" name="password"></td>
+						<td></td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td><input type="button" type="submit" value="登录"></td>
+						<td><input type="button" value="取消"></td>
+						<td><input type="button" value="注册"></td>
+					</tr>
+				</form>
+			</tbody>
+
+		</form>
+
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!--    配置组件扫描器-->
+    <context:component-scan base-package="com.nguyenxb.controller"/>
+<!--    配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+<!--    配置注解驱动-->
+    <mvc:annotation-driven/>
+
+
+<!--    声明拦截器.-->
+    <mvc:interceptors>
+<!-- 声明第一个拦截器
+        path = 拦截的uri地址,使用 ** 通配符
+           例如: path = "/user/**" user路径下的所有地址都会被拦截.
+
+-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--     这是指定不拦截的地址 的标签      <mvc:exclude-mapping path=""/>-->
+
+<!--            指定使用的拦截器.-->
+            <bean class="com.nguyenxb.handler.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

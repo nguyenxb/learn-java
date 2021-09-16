@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    使用name属性实现构造方法-->
+    <bean id="myfile" class="java.io.File">
+        <constructor-arg name="parent" value="src\main\resources\ba04"/>
+        <constructor-arg name="child" value="haha.txt"/>
+    </bean>
+</beans>

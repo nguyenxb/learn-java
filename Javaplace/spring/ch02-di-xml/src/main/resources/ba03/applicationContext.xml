@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+    构造注入: spring调用类的有参数构造方法,在创建对象的同时,在构造方法中给属性赋值.
+​	构造注入使用`<constructor-arg>`标签
+​	`<constructor-arg>`标签:一个`<constructor-arg>`表示构造方法的一个参数.
+​	`<constructor-arg>`标签属性:
+​		name: 表示构造方法的形参名
+​		index:表示构造方法的参数的位置, 参数从左往右位置是0,1,2…的顺序.
+​		value:构造方法的形参类型是简单类型的,使用value.
+​		ref: 构造方法的形参类型是引用类型的,使用ref.
+-->
+<!--    使用name属性实现构造方法-->
+    <bean id="mystudent" class="com.nguyenxb.ba03.Student">
+        <constructor-arg name="myname" value="张三"/><!--setName("李四")-->
+        <constructor-arg name="myage" value="23"/><!--setAge(20)-->
+<!--        引用类型赋值 -->
+        <constructor-arg name="myschool" ref="myschool11"/>
+    </bean>
+
+<!--    使用index属性实现构造方法-->
+    <bean id="mystudent2" class="com.nguyenxb.ba03.Student">
+        <constructor-arg index="0" value="张1"/>
+        <constructor-arg index="1" value="12"/>
+        <constructor-arg index="2" ref="myschool11"/>
+    </bean>
+    <!--    省略index属性实现构造方法: 默认从上到下是 0 , 1, 2 的参数位置-->
+    <bean id="mystudent3" class="com.nguyenxb.ba03.Student">
+        <constructor-arg value="周瑜"/>
+        <constructor-arg value="18"/>
+        <constructor-arg ref="myschool11"/>
+    </bean>
+
+<!--    声明School对象-->
+    <bean id="myschool11" class="com.nguyenxb.ba03.School">
+        <property name="name" value="03xx大学"/>
+        <property name="address" value="03xx大学路"/>
+    </bean>
+</beans>

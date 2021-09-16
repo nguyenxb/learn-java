@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aaaaa</title>
+</head>
+<body>
+<h1>index</h1>
+
+<a href="/user/car/1/owner/张三">1: 发起请求:/user/car/1/owner/张三</a>
+<a href="/user2/car/2/owner/李四">2: 发起请求:/user/car1/2/owner/李四</a>
+<br>
+<a href="/user3/car/3/owner/王五?age=20&inters=basketball&inters=game">3:发起请求</a>
+<br>
+<a href="/user4/car/4/owner/赵六">发起请求: 4 </a>
+<br>
+<a href="/cars/sell;low=34;brand=byd,bm,dz" >矩阵变量请求 1</a>
+
+<a href="/boss/1;age=20/2;age=10">矩阵变量 2 </a>
+
+<form action="/user5" method="post">
+    <input type="text" name="name" value="reqBody">
+    <input type="text" name="age" value="30">
+    <input type="submit" value="提交">
+</form>
+<hr>
+<hr>
+
+<form action="/user" method="get">
+    <input type="hidden" name="_method" value="GET">
+    <input type="hidden" name="_method" value="GET">
+
+    <input type="submit"  value="发起get请求">
+</form>
+<form action="/user" method="post">
+    <input type="hidden" name="_method" value="POST">
+    <input type="submit"  value="发起POST请求">
+</form>
+<form action="/user" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit"  value="发起delete请求">
+</form>
+<form action="/user" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="submit"  value="发起put请求">
+</form>
+
+</body>
+</html>

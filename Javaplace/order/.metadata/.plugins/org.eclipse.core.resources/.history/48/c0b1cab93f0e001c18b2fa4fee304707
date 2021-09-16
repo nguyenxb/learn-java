@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>基本资料</h1>
+	姓名: <%= request.getParameter("username") %>
+	性别: <%= request.getParameter("gender") %>
+	民族: <%= request.getParameter("nation") %>
+	专业: <%= request.getParameter("job") %>
+	兴趣爱好: <%= request.getParameter("inters") %>
+	
+</body>
+</html>

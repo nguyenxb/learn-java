@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 1.约束文件: 可以打开看的
+    http://mybatis.org/dtd/mybatis-3-config.dtd
+    约束文件的作用:定义和限制当前文件中可以使用的标签和属性,以及标签出现的顺序-->
+<configuration>
+
+    <settings>
+        <!--配置日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <!--配置数据源: 创建Connection对象-->
+            <dataSource type="POOLED">
+                <!--driver:驱动的内容-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <!--连接数据库的url: 不能直接使用 & 符号,要将其转换为 html 实体即 &amp; 代表的就是 & 符号 -->
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm?
+                useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+                <!--用户名-->
+                <property name="username" value="root"/>
+                <!--用户密码-->
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--指定其他mapper文件的位置:
+            目的: 使用这里的连接数据库信息来执行其他文件的sql语句-->
+    <!--Enter the path to your mapper file -->
+    <mappers>
+        <mapper resource="com\nguyenxb\dao\StudentDao.xml"/>
+    </mappers>
+</configuration>

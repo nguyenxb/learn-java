@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--    声明School对象-->
+    <bean id="MySchool" class="com.nguyenxb.ba07.School">
+        <property name="name" value="06xx大学"/>
+        <property name="address" value="06xx大学路"/>
+    </bean>
+</beans>

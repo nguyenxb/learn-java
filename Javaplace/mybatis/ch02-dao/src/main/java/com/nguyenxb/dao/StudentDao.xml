@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nguyenxb.dao.StudentDao">
+    <!--Enter your sql statement with (select | insert | update |delete) label-->
+    <select id="selectStudentById" resultType="com.nguyenxb.entity.Student">
+        select id,name,email,age from student where id = #{studentId}
+    </select>
+    <select id="selectStudents" resultType="com.nguyenxb.entity.Student">
+        select * from student
+    </select>
+    <select id="insertStudent">
+        insert into student values(#{id},#{name},#{email},#{age})
+    </select>
+</mapper>

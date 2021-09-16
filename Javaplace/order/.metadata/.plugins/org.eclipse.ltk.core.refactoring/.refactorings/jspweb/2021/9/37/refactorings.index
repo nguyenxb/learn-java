@@ -1,0 +1,13 @@
+1630826919139	Move 'jsp' to 'META-INF'
+1630827167480	Rename resource 'regist.jsp'
+1630828129957	Move 'register.jsp' to 'WEB-INF'
+1630828174383	Move 'register.jsp' to 'WebContent'
+1630829019920	Move 'register.jsp' to 'jsp'
+1630829250885	Move 'jsp' to 'WebContent'
+1630831240080	Rename resource 'checjLogin.jsp'
+1630835338535	Move 'login.jsp' to 'jsp'
+1630835394049	Move 5 resources to 'WebContent'
+1630835399803	Delete element
+1630840653247	Move 2 resources to 'js'
+1630840657113	Move 'jquery-1.8.0.min.js' to 'js'
+1630841199335	Move 'js' to 'WebContent'

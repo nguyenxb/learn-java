@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nguyenxb.dao.StudentDao">
+    <!--Enter your sql statement with (select | insert | update |delete) label-->
+<!--if
+    test: 使用对象的属性值作为条件
+-->
+    <sql id="SelectStudentField">
+        id,name,email,age
+    </sql>
+    <sql id="selectStudent">
+         select <include refid="SelectStudentField"/> from student
+    </sql>
+    <select id="selectIf" resultType="com.nguyenxb.entity.Student">
+        select * from student
+        where
+        <if test="name != null and name !=''">
+            name = #{name}
+        </if>
+        <if test="age > 0">
+            or age &lt; #{age}
+        </if>
+    </select>
+
+   <select id="selectWhere" resultType="com.nguyenxb.entity.Student">
+    select * from student
+        <where>
+            <if test="name != null and name !=''">
+                or name = #{name}
+            </if>
+            <if test="age > 0">
+                or age &gt; #{age}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectForeach1" resultType="com.nguyenxb.entity.Student">
+        <include refid="selectStudent"></include>
+        <if test="list != null and list.size > 0">
+            where id in
+            <foreach collection="list" open="(" close=")" separator="," item="myId">
+                #{myId}
+            </foreach>
+        </if>
+
+    </select>
+ <select id="selectForeach2" resultType="com.nguyenxb.entity.Student">
+        select * from student
+        <if test="list != null and list.size > 0">
+            where id in
+            <foreach collection="list" open="(" close=")" separator="," item="stu">
+                #{stu.id}
+            </foreach>
+        </if>
+
+    </select>
+
+    <select id="selectAllStudents" resultType="com.nguyenxb.entity.Student">
+        select * from student order by id
+    </select>
+
+</mapper>

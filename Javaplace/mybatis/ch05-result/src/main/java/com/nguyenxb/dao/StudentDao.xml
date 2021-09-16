@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nguyenxb.dao.StudentDao">
+    <!--Enter your sql statement with (select | insert | update |delete) label-->
+<!--
+    resultType: 1 java 类型全限定名称; 2 别名
+    resultType : 表示mybatis执行sql后得到java对象类型.
+                规则同名列赋值给同名属性.
+-->
+    <select id="selectStudentById" resultType="student">
+        select id,name,email,age from student where id = #{studentId}
+    </select>
+    <!--    执行sql语句,得到一个值,一行一列-->
+    <select id="countStudent" resultType="java.lang.Long">
+        select count(*) from student
+    </select>
+    <!--
+
+        执行结构得到一个Map结构数据, mybatis执行sql,把ResultSet转为mao
+        sql 执行结构是,列名做map的key,列值做value
+        sql 执行得到是一行记录,转为map结构是正确的.
+    -->
+    <select id="selectMap" resultType="java.util.Map">
+        select id,name,age from student where id = #{stuid}
+    </select>
+
+<!--    使用resultMap定义列和属性的关系-->
+<!--    定义resultMap: 一经定义可以反复使用
+        id : 给resultMap的映射关系起个名称,唯一值
+        type:java类型的全限定名称
+-->
+    <resultMap id="customMap" type="com.nguyenxb.pojo.CustomObject">
+<!--        定义列名和属性名的对应关系-->
+<!--        主键类型使用id标签 : 将数据库表的id 赋值给CustomObject类的cid -->
+        <id column="id" property="cid"/>
+<!--        非主键列使用result标签-->
+        <result column="name" property="cname"/>
+<!--        列名和属性名相同不用定义,当然定义也没有问题-->
+        <result column="email" property="email"/>
+        <result column="age" property="age"/>
+    </resultMap>
+<!--    使用resultMap属性,指定映射关系的id,注 : resultType和 resultMap只能使用一个-->
+    <select id="selectCustomObjectById" resultMap="customMap">
+        select id,name,email,age from student where id = #{stuid}
+    </select>
+<!--    使用列别名,解决列名和属性名不同的问题-->
+ <select id="selectCustomObjectById2" resultType="com.nguyenxb.pojo.CustomObject">
+        select id as cid,name cname,email,age from student where id = #{stuid}
+    </select>
+    <!--    like 第一种方式-->
+    <select id="selectLikeOne" resultType="com.nguyenxb.entity.Student">
+        select * from student where name like #{name}
+    </select>
+<!--   like 第二种方式-->
+<select id="selectLikeTwo" resultType="com.nguyenxb.entity.Student">
+        select * from student where name like "%" #{name} "%"
+    </select>
+
+
+</mapper>
